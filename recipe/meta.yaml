@@ -1,5 +1,5 @@
 {% set name = "cget" %}
-{% set version = "0.1.9" %}
+{% set version = "0.2.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,14 +7,14 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 2a7913b601bec615208585eda7e69998a43cc17080d36c2ff2ce8742c9794bf6
+  sha256: 835009ba6d623a36eee8056975d7cdbeebb0e0091a058b572ed433fb12ae18e8
 
 build:
   noarch: python
   number: 0
   entry_points:
     - cget = cget.cli:cli
-  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
+  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv
 
 requirements:
   host:
@@ -37,7 +37,7 @@ about:
   home: https://github.com/pfultz2/cget
   license: BSL-1.0
   license_file: LICENSE
-  summary: 'Cmake package retrieval. This can be used to download and install cmake packages.'
+  summary: Cmake package retrieval. This can be used to download and install cmake packages.
 
   description: |
     Cmake package retrieval. This can be used to download and install cmake packages.
