@@ -6,28 +6,30 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: 2a7913b601bec615208585eda7e69998a43cc17080d36c2ff2ce8742c9794bf6
 
 build:
   noarch: python
-  number: 0
+  number: 1
   entry_points:
     - cget = cget.cli:cli
   script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
 
 requirements:
   host:
-    - python
+    - python {{ python_min }}
     - pip
   run:
-    - python
+    - python >={{ python_min }}
     - click >=6.6
     - six >=1.10
     - cmake
     - subprocess32
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - cget
   commands:
